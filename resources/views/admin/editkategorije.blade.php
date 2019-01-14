@@ -5,18 +5,18 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Dodaj Kategoriju</div>
+                    <div class="card-header">Izmijeni Kategoriju</div>
                     <div class="card-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'KategorijaController@store']) !!}
+                        {!! Form::model($category,['method'=>'PATCH', 'action'=>['KategorijaController@update', $category->id]]) !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Ime Kategorije') !!}
                             {!! Form::text('name', null, ['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::submit('Kreiraj Kategoriju', ['class'=>'btn btn-primary']) !!}
+                            {!! Form::submit('Izmijeni Kategoriju', ['class'=>'btn btn-primary']) !!}
                         </div>
 
-                    {!! Form::close() !!}
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -35,19 +35,19 @@
                                 </thead>
                                 <tbody>
                                 @foreach($categories as $category)
-                                <tr>
-                                <td>{{ $category->id }}</td>
-                                <td>{{ $category->name }}</td>
-                                <td>
-                                    {!! Form::open(['method'=>'DELETE','action'=>['KategorijaController@destroy',$category->id],'class'=>'form-inline']) !!}
-                                    <a href="{{ route('kategorija.edit',$category->id) }}" class="btn btn-info">Izmjeni</a>
-                                    {!! Form::button('Brisi', ['class'=>'btn btn-danger', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
-                                </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td>
+                                            {!! Form::open(['method'=>'DELETE','action'=>['KategorijaController@destroy',$category->id],'class'=>'form-inline']) !!}
+                                            <a href="{{ route('kategorija.edit',$category->id) }}" class="btn btn-info">Izmjeni</a>
+                                            {!! Form::button('Brisi', ['class'=>'btn btn-danger', 'type'=>'submit']) !!}
+                                            {!! Form::close() !!}
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
-                        @else
+                                @else
                             </table>
                             <p>Nema Kategorija</p>
                         @endif

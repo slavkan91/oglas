@@ -23,5 +23,38 @@ class KategorijaController extends Controller
         $input=$request->all();
 
         Kategorija::create($input);
+
+        return redirect()->back();
+    }
+
+    public function edit($id){
+
+        $categories = Kategorija::all();
+        $category = Kategorija::findOrFail($id);
+
+        return view('admin.editkategorije', compact('categories','category'));
+    }
+
+    public function update(Request $request, $id){
+
+        $request->validate(['name'=>'required']);
+
+        $input=$request->all();
+
+        $category = Kategorija::findOrFail($id);
+
+        $category->update($input);
+
+        return redirect()->back();
+    }
+
+    public function destroy($id){
+
+        $category = Kategorija::findOrFail($id);
+
+        $category->delete();
+
+        return redirect('kategorija');
+
     }
 }

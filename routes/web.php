@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/kategorija', 'KategorijaController@index');
 Route::post('/kategorija', 'KategorijaController@store');
+Route::get('/kategorija/{kategorija}/edit', 'KategorijaController@edit')->name('kategorija.edit');
+Route::patch('/kategorija/{kategorija}', 'KategorijaController@update');
+Route::delete('/kategorija/{kategorija}', 'KategorijaController@destroy');
