@@ -18,8 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home','OglasController@store');
 
 Route::middleware('admin')->group(function (){
+    Route::get('/oglas', 'OglasController@index');
+    Route::patch('/oglas/{oglas}', 'OglasController@update');
 
     Route::get('/kategorija', 'KategorijaController@index');
     Route::post('/kategorija', 'KategorijaController@store');
