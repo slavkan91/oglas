@@ -8,4 +8,8 @@ class Kategorija extends Model
 {
     //
     protected $fillable = ['name'];
+
+    public function oglasi(){
+        return $this->hasMany('App\Oglas');
+    }
 }

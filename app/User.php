@@ -18,8 +18,21 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'role_id'
     ];
+
     public function role(){
         return $this->belongsTo('App\Role');
+    }
+
+    public function oglasi(){
+        return $this->hasMany('App\Oglas');
+    }
+
+    public function is_admin(){
+        if($this->role() == 'admin'){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     /**
