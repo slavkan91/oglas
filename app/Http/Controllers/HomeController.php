@@ -25,7 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         $kategorije = Kategorija::pluck('name', 'id')->all();
-
+        foreach ($kategorije as $key => $value){
+            if(strtolower($value)=='audi'){
+                unset($kategorije[$key]);
+            }
+        }
 
         return view('home', compact('kategorije'));
     }

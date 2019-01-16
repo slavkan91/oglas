@@ -43,8 +43,13 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-                                @else
                             </table>
+                            <div class="row justify-content-centar">
+                                <div class="pagination">
+                                    {{ $oglasi->links() }}
+                                </div>
+                            </div>
+                        @else
                             <p>Nema Kategorija</p>
                         @endif
                     </div>
