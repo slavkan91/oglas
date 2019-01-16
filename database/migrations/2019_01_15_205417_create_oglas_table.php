@@ -21,8 +21,8 @@ class CreateOglasTable extends Migration
             $table->float('cijena', 8,2);
             $table->integer('kilometraza');
             $table->year('godiste');
-            $table->string('slika')->default(NULL);
-            $table->boolean('odobreno');
+            $table->string('slika')->nullable()->default(NULL);
+            $table->boolean('odobreno')->default(0);
             $table->timestamps();
         });
     }

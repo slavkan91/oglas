@@ -33,7 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if(Auth::user()->is_admin())
+                            <li class="nav-item">
+                                <a href="{{ route('oglas') }}" class="nav-link">Odobri Oglas</a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a href="{{ route('kategorija') }}" class="nav-link">Kategorije</a>
+                            </li>
+                            @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
