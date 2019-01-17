@@ -6,10 +6,12 @@
 
         <title>Laravel</title>
 
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
             html, body {
                 background-color: #fff;
@@ -21,7 +23,7 @@
             }
 
             .full-height {
-                height: 100vh;
+                height: 10vh;
             }
 
             .flex-center {
@@ -78,9 +80,35 @@
                     @endauth
                 </div>
             @endif
-
-            <div class="content">
-
+        </div>
+        <div class="content">
+            <div class="container">
+                @if(count($oglasi))
+                    <div class="row">
+                        @foreach($oglasi as $oglas)
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <img class="card-img-top" src="{{ $oglas->slika ? $oglas->slika : 'https://via.placeholder.com/400x900' }}" style="height: 225px; width: 100%; display: block;">
+                                    <div class="card-body">
+                                        <h1 class="card-text">{{ $oglas->ime }}</h1>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Cijena: {{ $oglas->cijena }} KM</li>
+                                            <li class="list-group-item">Godiste: {{ $oglas->godiste }}</li>
+                                            <li class="list-group-item">Kilometraza: {{ $oglas->kilometraza }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class="row justify-content-centar">
+                            <div class="pagination">
+                                {{ $oglasi->links() }}
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <h1>Nema oglasa</h1>
+                @endif
             </div>
         </div>
     </body>

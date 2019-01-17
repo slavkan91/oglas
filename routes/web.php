@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
 
 Auth::routes();
 
@@ -21,6 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home','OglasController@store');
 
 Route::middleware('admin')->group(function (){
+    Route::get('/dodaj', 'HomeController@create')->name('dodaj');
     Route::get('/oglas', 'OglasController@index')->name('oglas');
     Route::patch('/oglas/{oglas}', 'OglasController@update');
 
